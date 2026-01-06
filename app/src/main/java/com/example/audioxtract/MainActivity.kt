@@ -4,14 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.audioxtract.presentation.extractor.ExtractorScreen
+import androidx.compose.runtime.getValue
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.example.audioxtract.navigation.Navigation
+import com.example.audioxtract.presentation.audio_list.AudioListScreen
+import com.example.audioxtract.presentation.extractor.HomeScreen
 import com.example.audioxtract.ui.theme.AudioXtractTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,8 +19,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val navController = rememberNavController()
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            val currentRoute = navBackStackEntry?.destination?.route
+
             AudioXtractTheme {
-                ExtractorScreen()
+               Navigation()
             }
         }
     }

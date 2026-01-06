@@ -4,7 +4,8 @@ import android.net.Uri
 import com.example.audioxtract.domain.model.AudioFile
 
 interface AudioExtractorRepository {
-    suspend fun extractAudio(videoUri: Uri, outputFormat: String): Result<AudioFile>
+    suspend fun extractAudio(videoUri: Uri, outputFormat: String): kotlin.Result<AudioFile>
+    suspend fun getExtractedAudio():kotlin.Result<List<AudioFile>>
 }
 
 
